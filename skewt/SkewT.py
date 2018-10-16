@@ -8,7 +8,7 @@ from matplotlib.ticker import (MultipleLocator, FixedLocator, AutoLocator,
 from matplotlib.pyplot import rcParams, figure, show, draw
 from numpy import (ma, array, linspace, logspace, log, cos, sin, pi, zeros,
                    exp, arange, trapz, where, concatenate, nan, isnan, argsort,
-                   log10, meshgrid)
+                   log10, meshgrid, ceil, floor)
 from datetime import datetime
 import os
 import sys
@@ -75,7 +75,8 @@ class SkewXAxes(SkewXAxes):
         # explicitly set Y-coord as otherwise "posx and posy should
         # be finite values" error occurs
         self.xaxis.set_label_coords(0.5, -0.05)
-        yticks = linspace(100, 1000, 10)
+        yticks = range(ceil(self.pmin/100)*100, floor(self.pmax/100)*100, 100)
+
         if self.pmin < 100:
             yticks = concatenate((array([50, 20, 10]), yticks))
 
