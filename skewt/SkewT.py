@@ -75,8 +75,8 @@ class SkewXAxes(SkewXAxes):
         # explicitly set Y-coord as otherwise "posx and posy should
         # be finite values" error occurs
         self.xaxis.set_label_coords(0.5, -0.05)
-        yticks = range(ceil(self.pmin/100)*100, floor(self.pmax/100)*100, 100)
-
+        yticks = list(arange(int(ceil(self.pmin/100.)*100.), int(floor(self.pmax/100.)*100.)+100, 100))
+        print (yticks)
         if self.pmin < 100:
             yticks = concatenate((array([50, 20, 10]), yticks))
 
